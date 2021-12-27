@@ -1,0 +1,135 @@
+*::selection {
+    color: white;
+    background-color: #777;
+}
+
+:root {
+    --primary: #ddd;
+    --dark: #333;
+    --light: #fff;
+    --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+}
+
+body {
+    margin: 30px 50px;
+    cursor: default;
+}
+
+.balance-col {
+    width: 150px;
+    text-align: center;
+}
+
+.currency-col {
+    width: 150px;
+    text-align: center;
+}
+
+.tran-col {
+    text-align: center;
+}
+
+.wrapper {
+    display: grid;
+}
+
+.top-container {
+    display: grid;
+    grid-template-areas: 
+    'account account btns'
+}
+
+.account {
+    grid-area: account;
+}
+
+.dropdown-cur {
+    border-radius: 10px;
+    border-bottom: 2px solid #333;
+    outline: none;
+    resize: none;
+    width: 100px;
+    margin-right: 10px;
+    font-size: 25px;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.btns {
+    display: grid;
+    margin-top: 40px;
+    grid-area: btns;
+    grid-template-areas: 
+    'choose-btn add-btn'
+}
+
+.input-area {
+    width: 180px;
+    border-radius: 10px;
+    border-bottom: 2px solid #333;
+    outline: none;
+    resize: none;
+    font-size: 20px;
+}
+
+.dropdown-area {
+    border-radius: 10px;
+    border-bottom: 2px solid #333;
+    outline: none;
+    resize: none;
+    font-size: 20px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+
+input { 
+    text-align: center; 
+}
+
+.choose-btn {
+    grid-area: choose-btn;
+}
+
+.add-btn {
+    grid-area: add-btn;
+}
+
+.back-btn {
+    margin-bottom: 20px;
+}
+
+.btn-main {
+    position: relative;
+    border-radius: 20px;
+    background-color: var(--dark);
+    font-size: 20px;
+    color: var(--light);
+    padding: 0.4rem 1.3rem;
+    text-decoration: none;
+    border: 0;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-main:hover {
+    background: var(--light);
+    color: var(--dark);
+}
+
+.main-tr {
+    cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}

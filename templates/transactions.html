@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Транзакции</title>
+</head>
+<body>
+    <div class="wrapper">
+        <section class="top-container">  
+            <header class="account">
+                <button class="btn-main back-btn" onclick="window.location='../'">Назад</button>
+                <h3>Счет: {{account.id_}}</h3>
+                <h4>Баланс: {{account.balance}}</h4>
+                <h4>Валюта: {{account.currency}}</h4>
+            </header>
+
+            <form method="GET">
+                <input class="btn-main" type="submit" name="graph-btn" value="Показать график"></input>
+            </form>
+            
+            <form class="btns" action="{{account.id_}}" method="POST">
+                <!-- Перевод денег -->
+                <div class="choose-btn">
+                    <h4>Выберите счет:</h4>
+                    <select class="dropdown-area" name="dropdown_accounts_for_transaction">
+                        {% for account_by_curr in accounts_by_currency %}
+                            <option value={{account_by_curr.id_}}>{{account_by_curr.id_}}</option>
+                        {% endfor %}
+                    </select><br><br>
+                    <input class="input-area" name="balance_brutto" type="number" step="0.01" placeholder="Введите сумму">
+                    <input class="btn-main" name="transaction_btn" type="submit" value="Перевести">
+                </div>
+                <div class="add-btn">
+                    <!-- Пополнение счета -->
+                    <h4>Пополнить счет:</h4>
+                    <input class="input-area" name="add_amount" type="number" step="0.01" placeholder="Введите сумму">
+                    <input class="btn-main" name="add_amount_btn" type="submit" value="Пополнить">
+                </div>
+            </form>
+        </section>
+        <!-- Таблица транзакций -->
+        <br>
+        <h3>Транзакции</h3>
+        <table class="table table-hover">
+            <tr>
+                <td><h6>ID Транзакции</h6></td>
+                <td><h6>Отправитель</h6></td>
+                <td><h6>Получатель</h6></td>
+                <td class="tran-col"><h6>Брутто</h6></td>
+                <td class="tran-col"><h6>Нетто</h6></td>
+                <td class="tran-col"><h6>Валюта</h6></td>
+                <td class="tran-col"><h6>Статус</h6></td>
+            </tr>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{transaction.id_}}</td>
+                    <td>{{transaction.source_account}}</td>
+                    <td>{{transaction.target_account}}</td>
+                    <td class="tran-col">{{transaction.balance_brutto}}</td>
+                    <td class="tran-col">{{transaction.balance_netto}}</td>
+                    <td class="tran-col">{{transaction.currency}}</td>
+                    <td class="tran-col">{{transaction.status}}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
